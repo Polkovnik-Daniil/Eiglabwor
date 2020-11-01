@@ -111,6 +111,28 @@ namespace ConsoleApp1
     {
         public T x;
         public T y;
+        public T GetX
+        {
+            get
+            {
+                return x;
+            }
+            set
+            {
+                x = value;
+            }
+        }
+        public T GetY
+        {
+            get
+            {
+                return y;
+            }
+            set
+            {
+                y = value;
+            }
+        }
         public void show()
         {
             Console.WriteLine("Result: " + x + ", " + y);
@@ -142,45 +164,55 @@ namespace ConsoleApp1
         {
             struc stu = new struc(val_2_st, val_1_st);
             stu.DisplayInfo();
-        }        
+        }
+        public string gX { get; set; }
+        public string gY { get; set; }
     }
 
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!\n");
-            int i = 0;
-            CollectionTypes<string> st = new CollectionTypes<string>();
-            while (i < 4)
-            {
-                Console.Write("Enter value: ");
-                string str = Console.ReadLine();
-                st.ADD(str);
-                i++;
-            }
-            int size_stack_1 = st.SST();
-            st.DEL();
-            int size_stack_2 = st.SST();
-            if (size_stack_1 == size_stack_2)
-            {
-                Console.WriteLine("Fetch error");
-            }
-            st.SHW();
+            //Console.WriteLine("Hello World!\n");
+            //int i = 0;
+            //CollectionTypes<string> st = new CollectionTypes<string>();
+            //while (i < 4)
+            //{
+            //    Console.Write("Enter value: ");
+            //    string str = Console.ReadLine();
+            //    st.ADD(str);
+            //    i++;
+            //}
+            //int size_stack_1 = st.SST();
+            //st.DEL();
+            //int size_stack_2 = st.SST();
+            //if (size_stack_1 == size_stack_2)
+            //{
+            //    Console.WriteLine("Fetch error");
+            //}
+            //st.SHW();
+
+            UserType us = new UserType();
+            UserType us1 = new UserType();
 
             Console.Write("Enter first value(to class Generalizedlimitation): ");
             string str_ = Console.ReadLine();
+            us.gX = str_;
             Console.Write("Enter second value(to class Generalizedlimitation): ");
-            string str_1 = Console.ReadLine();
+            str_ = Console.ReadLine();
+            us1.gY = str_;
 
-            Generalizedlimitation<UserType> genlim = new Generalizedlimitation<UserType>();
+            Generalizedlimitation<UserType> genlim = new Generalizedlimitation<UserType>()
+            {
+                GetX = us,
+                GetY = us1
+            };
             genlim.show();
 
             Console.Write("\nEnter value to struct(integer): ");
             int val = int.Parse(Console.ReadLine());
             Console.Write("\nEnter value to struct(string): ");
             string val_string = Console.ReadLine();
-            UserType us = new UserType();
             us.Shw(val, val_string);
             
             Console.Write("\nEnter value to write to file: ");
